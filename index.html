@@ -1,828 +1,790 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Soundriff - Innovative sound design studio specializing in premium AI-powered promotional music for leading global brands">
-    <meta name="keywords" content="sound design, AI music, promotional music, sonic branding, custom soundtracks">
-    <title>Soundriff - Premium Sound Design Studio</title>
-    <style>
-        /* Modern CSS Reset */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Custom Properties */
-        :root {
-            --color-black: #000000;
-            --color-darkest-blue: #000033;
-            --color-deep-blue: #000066;
-            --color-royal-blue: #0000CC;
-            --color-bright-blue: #0000FF;
-            --color-white: #ffffff;
-            --color-light-blue: rgba(0, 0, 255, 0.1);
-            --color-text-secondary: rgba(255, 255, 255, 0.8);
-            --gradient-main: linear-gradient(135deg, 
-                var(--color-black) 0%,
-                var(--color-darkest-blue) 25%,
-                var(--color-deep-blue) 50%,
-                var(--color-royal-blue) 75%,
-                var(--color-bright-blue) 100%);
-            --gradient-section: linear-gradient(160deg, 
-                var(--color-darkest-blue) 0%,
-                var(--color-deep-blue) 100%);
-            --section-bg: rgba(0, 0, 102, 0.7);
-            --card-bg: rgba(0, 0, 153, 0.3);
-            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-            --border-radius-large: 20px;
-            --border-radius-medium: 15px;
-            --shadow-standard: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --shadow-hover: 0 15px 40px rgba(0, 0, 255, 0.2);
-            --font-primary: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-secondary: Georgia, serif;
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 2rem;
-            --spacing-lg: 4rem;
-            --spacing-xl: 6rem;
-        }
-
-        /* Global Styles */
-        body {
-            font-family: var(--font-primary);
-            font-weight: 300;
-            line-height: 1.6;
-            color: var(--color-white);
-            background: var(--gradient-main) fixed;
-            min-height: 100vh;
-            overflow-x: hidden;
-            font-display: swap;
-            will-change: transform;
-        }
-
-        /* Animated Background - optimized with will-change */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 50%, 
-                rgba(0, 0, 255, 0.15) 0%,
-                rgba(0, 0, 102, 0.1) 20%,
-                transparent 70%);
-            animation: pulse 8s ease-in-out infinite;
-            z-index: -1;
-            will-change: transform;
-            pointer-events: none;
-        }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(0, 0, 255, 0.5);
-            border-radius: 50%;
-            filter: blur(3px);
-            will-change: transform;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        /* Typography */
-        h1, h2, h3 {
-            margin: 0;
-            line-height: 1.2;
-            background: linear-gradient(90deg, var(--color-white), var(--color-bright-blue));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 20px rgba(0, 0, 255, 0.3);
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        p {
-            margin-bottom: var(--spacing-md);
-            font-size: 1.125rem;
-            letter-spacing: 0.01em;
-        }
-
-        .lead-text {
-            font-size: 1.35rem;
-            line-height: 1.5;
-            font-weight: 400;
-            margin-bottom: var(--spacing-md);
-            max-width: 80ch;
-            color: var(--color-white);
-        }
-
-        .text-accent {
-            color: var(--color-bright-blue);
-            font-weight: 500;
-        }
-
-        /* Header Styles */
-        .header {
-            background: var(--gradient-section);
-            padding: var(--spacing-xl) var(--spacing-md);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-radius: 0 0 50% 50% / 20px;
-            box-shadow: var(--shadow-standard);
-            contain: layout;
-        }
-
-        .header-glow {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, 
-                rgba(0, 0, 255, 0.2) 0%,
-                transparent 70%);
-            animation: rotate 20s linear infinite;
-            will-change: transform;
-            pointer-events: none;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .header h1 {
-            font-size: clamp(3rem, 8vw, 5rem);
-            margin-bottom: var(--spacing-sm);
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 20px rgba(0, 0, 255, 0.5); }
-            50% { text-shadow: 0 0 40px rgba(0, 0, 255, 0.8); }
-        }
-
-        .header p {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
-            opacity: 0.9;
-            position: relative;
-            color: var(--color-white);
-            text-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
-            margin-bottom: 0;
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--spacing-md);
-            position: relative;
-        }
-
-        /* About Section - Enhanced */
-        .about-section {
-            margin-bottom: var(--spacing-lg);
-            padding: var(--spacing-lg) var(--spacing-md);
-            background: var(--section-bg);
-            border-radius: var(--border-radius-large);
-            box-shadow: var(--shadow-standard);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 255, 0.1);
-            transform: translateY(0);
-            transition: var(--transition-smooth);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-lg);
-            align-items: center;
-        }
-
-        .about-section:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .about-media {
-            position: relative;
-            height: 100%;
-            min-height: 380px;
-            border-radius: var(--border-radius-medium);
-            overflow: hidden;
-            box-shadow: var(--shadow-standard);
-        }
-
-        .about-media img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-            display: block;
-            transition: var(--transition-smooth);
-        }
-
-        .about-media:hover img {
-            transform: scale(1.05);
-        }
-
-        .waveform {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 120px;
-            background: linear-gradient(to top, rgba(0, 0, 102, 0.9), transparent);
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding: var(--spacing-sm);
-        }
-
-        .waveform-bar {
-            width: 3px;
-            background: var(--color-bright-blue);
-            margin: 0 2px;
-            border-radius: 1px;
-            animation: sound-wave 1.5s infinite ease-in-out;
-        }
-
-        @keyframes sound-wave {
-            0%, 100% { height: 20%; }
-            50% { height: 70%; }
-        }
-
-        .about-section h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: var(--spacing-md);
-            position: relative;
-            display: inline-block;
-        }
-
-        .about-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--gradient-main);
-            transform: scaleX(0.3);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-
-        .about-section:hover h2::after {
-            transform: scaleX(1);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: var(--spacing-sm);
-            background: rgba(0, 0, 153, 0.2);
-            border-radius: var(--border-radius-medium);
-            transition: var(--transition-smooth);
-        }
-
-        .stat-card:hover {
-            background: rgba(0, 0, 153, 0.4);
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: var(--spacing-xs);
-            background: linear-gradient(90deg, #fff, var(--color-bright-blue));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-        }
-
-        /* Regular Sections */
-        .section {
-            margin-bottom: var(--spacing-lg);
-            padding: var(--spacing-lg) var(--spacing-md);
-            background: var(--section-bg);
-            border-radius: var(--border-radius-large);
-            box-shadow: var(--shadow-standard);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 255, 0.1);
-            transform: translateY(0);
-            transition: var(--transition-smooth);
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .section h2 {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: var(--spacing-md);
-            position: relative;
-            display: inline-block;
-        }
-
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--gradient-main);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-
-        .section:hover h2::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        /* Client Logos */
-        .logos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-md);
-            margin: var(--spacing-md) 0;
-        }
-
-        .logo-card {
-            background: var(--card-bg);
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius-medium);
-            text-align: center;
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-            contain: content;
-        }
-
-        .logo-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                transparent 0%,
-                rgba(0, 0, 255, 0.1) 50%,
-                transparent 100%);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-            will-change: transform;
-            pointer-events: none;
-        }
-
-        .logo-card:hover::before {
-            transform: translateX(100%);
-        }
-
-        .logo-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .logo-card img {
-            max-width: 150px;
-            height: auto;
-            filter: drop-shadow(0 0 10px rgba(0, 0, 255, 0.3));
-            display: inline-block;
-            vertical-align: middle;
-            width: 100%;
-            object-fit: contain;
-        }
-
-        /* Audio Player Styling */
-        .audio-demos {
-            display: grid;
-            gap: var(--spacing-md);
-        }
-
-        .audio-card {
-            background: rgba(0, 0, 153, 0.4);
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius-medium);
-            border: 1px solid rgba(0, 0, 255, 0.2);
-            transition: var(--transition-smooth);
-            contain: content;
-        }
-
-        .audio-card:hover {
-            background: rgba(0, 0, 153, 0.6);
-            transform: scale(1.01);
-        }
-
-        .audio-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: var(--spacing-md);
-            position: relative;
-            display: inline-block;
-        }
-
-        .audio-player {
-            width: 100%;
-            margin: var(--spacing-sm) 0;
-            border-radius: 30px;
-            background: var(--gradient-section);
-            box-shadow: 0 5px 15px rgba(0, 0, 255, 0.2);
-        }
-
-        /* Quotes */
-        blockquote {
-            background: var(--card-bg);
-            padding: var(--spacing-md);
-            border-left: 5px solid var(--color-bright-blue);
-            margin: var(--spacing-md) 0;
-            border-radius: var(--border-radius-medium);
-            font-style: italic;
-            position: relative;
-            overflow: hidden;
-            font-family: var(--font-secondary);
-            font-size: 1.2rem;
-            line-height: 1.6;
-        }
-
-        blockquote::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            font-size: 8rem;
-            color: rgba(0, 0, 255, 0.1);
-            font-family: serif;
-            pointer-events: none;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--gradient-section);
-            color: var(--color-white);
-            text-align: center;
-            padding: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg,
-                transparent 0%,
-                var(--color-bright-blue) 50%,
-                transparent 100%);
-            pointer-events: none;
-        }
-
-        /* Lazy Load Images & Content */
-        .lazy-load {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .lazy-load.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Button Styles */
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(90deg, var(--color-royal-blue), var(--color-bright-blue));
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 255, 0.3);
-            transition: var(--transition-smooth);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            margin-top: var(--spacing-sm);
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--color-bright-blue), var(--color-royal-blue));
-            z-index: -1;
-            transition: opacity 0.3s ease;
-            opacity: 0;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 255, 0.4);
-        }
-
-        .cta-button:hover::before {
-            opacity: 1;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .about-section {
-                grid-template-columns: 1fr;
-                gap: var(--spacing-md);
-            }
-            
-            .about-media {
-                min-height: 300px;
-                order: -1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            :root {
-                --spacing-lg: 3rem;
-                --spacing-xl: 4rem;
-            }
-            
-            .section, .about-section {
-                padding: var(--spacing-md);
-            }
-
-            .logos {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: var(--spacing-sm);
-            }
-
-            .audio-card {
-                padding: var(--spacing-md);
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Performance Optimization */
-        @media (prefers-reduced-motion: reduce) {
-            .bg-animation, .header-glow, .section, .logo-card::before, .header h1,
-            .about-section, .waveform-bar, .particle {
-                animation: none;
-                transition: none;
-            }
-        }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Selection Style */
-        ::selection {
-            background: var(--color-bright-blue);
-            color: var(--color-white);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Soundriff - Innovative sound design studio specializing in premium AI-powered promotional music for leading global brands">
+  <meta name="keywords" content="sound design, AI music, promotional music, sonic branding, custom soundtracks">
+  <title>Soundriff - Premium Sound Design Studio</title>
+  <style>
+    /* Modern CSS Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Custom Properties */
+    :root {
+      --color-black: #000000;
+      --color-darkest-blue: #000033;
+      --color-deep-blue: #000066;
+      --color-royal-blue: #0000CC;
+      --color-bright-blue: #0000FF;
+      --color-white: #ffffff;
+      --color-light-blue: rgba(0, 0, 255, 0.1);
+      --color-text-secondary: rgba(255, 255, 255, 0.8);
+      --gradient-main: linear-gradient(135deg, var(--color-black) 0%, var(--color-darkest-blue) 25%, var(--color-deep-blue) 50%, var(--color-royal-blue) 75%, var(--color-bright-blue) 100%);
+      --gradient-section: linear-gradient(160deg, var(--color-darkest-blue) 0%, var(--color-deep-blue) 100%);
+      --section-bg: rgba(0, 0, 102, 0.7);
+      --card-bg: rgba(0, 0, 153, 0.3);
+      --transition-smooth: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+      --border-radius-large: 20px;
+      --border-radius-medium: 15px;
+      --shadow-standard: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 15px 40px rgba(0, 0, 255, 0.2);
+      --font-primary: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-secondary: Georgia, serif;
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 4rem;
+      --spacing-xl: 6rem;
+    }
+
+    /* Global Styles */
+    body {
+      font-family: var(--font-primary);
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--color-white);
+      background: var(--gradient-main) fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-display: swap;
+      will-change: transform;
+    }
+
+    /* Animated Background - optimized with will-change */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(0, 0, 255, 0.15) 0%, rgba(0, 0, 102, 0.1) 20%, transparent 70%);
+      animation: pulse 8s ease-in-out infinite;
+      z-index: -1;
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(0, 0, 255, 0.5);
+      border-radius: 50%;
+      filter: blur(3px);
+      will-change: transform;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.2;
+      background: linear-gradient(90deg, var(--color-white), var(--color-bright-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(0, 0, 255, 0.3);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      margin-bottom: var(--spacing-md);
+      font-size: 1.125rem;
+      letter-spacing: 0.01em;
+    }
+
+    .lead-text {
+      font-size: 1.35rem;
+      line-height: 1.5;
+      font-weight: 400;
+      margin-bottom: var(--spacing-md);
+      max-width: 80ch;
+      color: var(--color-white);
+    }
+
+    .text-accent {
+      color: var(--color-bright-blue);
+      font-weight: 500;
+    }
+
+    /* Header Styles */
+    .header {
+      background: var(--gradient-section);
+      padding: var(--spacing-xl) var(--spacing-md);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0 0 50% 50% / 20px;
+      box-shadow: var(--shadow-standard);
+      contain: layout;
+    }
+
+    .header-glow {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(0, 0, 255, 0.2) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .header h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      margin-bottom: var(--spacing-sm);
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 20px rgba(0, 0, 255, 0.5); }
+      50% { text-shadow: 0 0 40px rgba(0, 0, 255, 0.8); }
+    }
+
+    .header p {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      opacity: 0.9;
+      position: relative;
+      color: var(--color-white);
+      text-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
+      margin-bottom: 0;
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-md);
+      position: relative;
+    }
+
+    /* About Section - Enhanced */
+    .about-section {
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-lg) var(--spacing-md);
+      background: var(--section-bg);
+      border-radius: var(--border-radius-large);
+      box-shadow: var(--shadow-standard);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 0, 255, 0.1);
+      transition: var(--transition-smooth);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-lg);
+      align-items: center;
+    }
+
+    .about-section:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-media {
+      position: relative;
+      height: 100%;
+      min-height: 380px;
+      border-radius: var(--border-radius-medium);
+      overflow: hidden;
+      box-shadow: var(--shadow-standard);
+    }
+
+    /* The sonic animation canvas fills the whole media container */
+    #sonicCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .about-section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: var(--spacing-md);
+      position: relative;
+      display: inline-block;
+    }
+
+    .about-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gradient-main);
+      transform: scaleX(0.3);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .about-section:hover h2::after {
+      transform: scaleX(1);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: var(--spacing-sm);
+      background: rgba(0, 0, 153, 0.2);
+      border-radius: var(--border-radius-medium);
+      transition: var(--transition-smooth);
+    }
+
+    .stat-card:hover {
+      background: rgba(0, 0, 153, 0.4);
+      transform: translateY(-5px);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-xs);
+      background: linear-gradient(90deg, #fff, var(--color-bright-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--color-text-secondary);
+    }
+
+    /* Regular Sections */
+    .section {
+      margin-bottom: var(--spacing-lg);
+      padding: var(--spacing-lg) var(--spacing-md);
+      background: var(--section-bg);
+      border-radius: var(--border-radius-large);
+      box-shadow: var(--shadow-standard);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 0, 255, 0.1);
+      transition: var(--transition-smooth);
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .section h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: var(--spacing-md);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gradient-main);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover h2::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Client Logos */
+    .logos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+    }
+
+    .logo-card {
+      background: var(--card-bg);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius-medium);
+      text-align: center;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      contain: content;
+    }
+
+    .logo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 0%, rgba(0, 0, 255, 0.1) 50%, transparent 100%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    .logo-card:hover::before {
+      transform: translateX(100%);
+    }
+
+    .logo-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .logo-card img {
+      max-width: 150px;
+      height: auto;
+      filter: drop-shadow(0 0 10px rgba(0, 0, 255, 0.3));
+      display: inline-block;
+      vertical-align: middle;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    /* Audio Player Styling */
+    .audio-demos {
+      display: grid;
+      gap: var(--spacing-md);
+    }
+
+    .audio-card {
+      background: rgba(0, 0, 153, 0.4);
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius-medium);
+      border: 1px solid rgba(0, 0, 255, 0.2);
+      transition: var(--transition-smooth);
+      contain: content;
+    }
+
+    .audio-card:hover {
+      background: rgba(0, 0, 153, 0.6);
+      transform: scale(1.01);
+    }
+
+    .audio-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: var(--spacing-md);
+      position: relative;
+      display: inline-block;
+    }
+
+    .audio-player {
+      width: 100%;
+      margin: var(--spacing-sm) 0;
+      border-radius: 30px;
+      background: var(--gradient-section);
+      box-shadow: 0 5px 15px rgba(0, 0, 255, 0.2);
+    }
+
+    /* Quotes */
+    blockquote {
+      background: var(--card-bg);
+      padding: var(--spacing-md);
+      border-left: 5px solid var(--color-bright-blue);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--border-radius-medium);
+      font-style: italic;
+      position: relative;
+      overflow: hidden;
+      font-family: var(--font-secondary);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    blockquote::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 8rem;
+      color: rgba(0, 0, 255, 0.1);
+      font-family: serif;
+      pointer-events: none;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--gradient-section);
+      color: var(--color-white);
+      text-align: center;
+      padding: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--color-bright-blue) 50%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Lazy Load Images & Content */
+    .lazy-load {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .lazy-load.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Button Styles */
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--color-royal-blue), var(--color-bright-blue));
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 255, 0.3);
+      transition: var(--transition-smooth);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      margin-top: var(--spacing-sm);
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-bright-blue), var(--color-royal-blue));
+      z-index: -1;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 255, 0.4);
+    }
+
+    .cta-button:hover::before {
+      opacity: 1;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .about-section {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+      
+      .about-media {
+        min-height: 300px;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --spacing-lg: 3rem;
+        --spacing-xl: 4rem;
+      }
+      
+      .section, .about-section {
+        padding: var(--spacing-md);
+      }
+
+      .logos {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--spacing-sm);
+      }
+
+      .audio-card {
+        padding: var(--spacing-md);
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Performance Optimization */
+    @media (prefers-reduced-motion: reduce) {
+      .bg-animation, .header-glow, .section, .logo-card::before, .header h1,
+      .about-section, .waveform-bar, .particle {
+        animation: none;
+        transition: none;
+      }
+    }
+
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Selection Style */
+    ::selection {
+      background: var(--color-bright-blue);
+      color: var(--color-white);
+    }
+  </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    <div class="particles" id="particles"></div>
-    
-    <header class="header">
-        <div class="header-glow"></div>
-        <h1>Soundriff</h1>
-        <p>The Home Of Sound Innovation</p>
-    </header>
+  <div class="bg-animation"></div>
+  <div class="particles" id="particles"></div>
+  
+  <header class="header">
+    <div class="header-glow"></div>
+    <h1>Soundriff</h1>
+    <p>The Home Of Sound Innovation</p>
+  </header>
 
-    <div class="container">
-        <section class="about-section">
-            <div class="about-content">
-                <h2>Redefining Sonic Branding</h2>
-                <p class="lead-text">At Soundriff, we craft <span class="text-accent">high-impact sonic experiences</span> that elevate brands through the power of innovative sound design.</p>
-                
-                <p>Our unique approach combines cutting-edge AI technology with human artistry to produce premium audio signatures that resonate with audiences on a deeper level, while maintaining cost efficiency.</p>
-                
-                <p>From global campaigns to intimate brand moments, we create custom soundtracks that capture the essence of your brand identity and transform it into an unforgettable auditory experience.</p>
-                
-                <blockquote>
-                    Sound is the invisible architecture of emotion. We build sonic landscapes that make your brand not just heard, but remembered.
-                </blockquote>
-                
-                <a href="#contact" class="cta-button">Get in Touch</a>
-                
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Global Brands</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-label">Client Retention</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">5K+</div>
-                        <div class="stat-label">Productions</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="about-media">
-                <img src="studio-image.jpg" alt="Soundriff Studio Setup with premium audio equipment" loading="lazy">
-                <div class="waveform">
-                    <div class="waveform-bar" style="animation-delay: 0s; height: 40%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 0.1s; height: 60%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 0.2s; height: 30%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 0.3s; height: 70%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 0.4s; height: 50%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 0.5s; height: 40%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 0.6s; height: 80%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 0.7s; height: 30%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 0.8s; height: 60%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 0.9s; height: 50%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 1.0s; height: 70%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 1.1s; height: 40%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 1.2s; height: 20%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 1.3s; height: 50%;"></div>
-                    <div class="waveform-bar" style="animation-delay: 1.4s; height: 30%;"></div>
-                </div>
-            </div>
-        </section>
+  <div class="container">
+    <section class="about-section">
+      <div class="about-content">
+        <h2>Redefining Sonic Branding</h2>
+        <p class="lead-text">
+          At Soundriff, we craft <span class="text-accent">high-impact sonic experiences</span> that elevate brands through the power of innovative sound design.
+        </p>
+        <p>
+          Our unique approach combines cutting-edge AI technology with human artistry to produce premium audio signatures that resonate with audiences on a deeper level, while maintaining cost efficiency.
+        </p>
+        <p>
+          From global campaigns to intimate brand moments, we create custom soundtracks that capture the essence of your brand identity and transform it into an unforgettable auditory experience.
+        </p>
+        <blockquote>
+          Sound is the invisible architecture of emotion. We build sonic landscapes that make your brand not just heard, but remembered.
+        </blockquote>
+        <a href="#contact" class="cta-button">Get in Touch</a>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Global Brands</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Client Retention</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">5K+</div>
+            <div class="stat-label">Productions</div>
+          </div>
+        </div>
+      </div>
+      <!-- Sonic Animation replaces the image and waveform -->
+      <div class="about-media">
+        <canvas id="sonicCanvas"></canvas>
+      </div>
+    </section>
 
-        <section class="section lazy-load">
-            <h2>Leading Brands Demo Tracks</h2>
-            <div class="logos">
-                <div class="logo-card">
-                    <img src="Nike Logo.jpg" alt="Nike Logo" loading="lazy">
-                </div>
-                <div class="logo-card">
-                    <img src="Mc Donald Logo.jpg" alt="McDonald's Logo" loading="lazy">
-                </div>
-                <div class="logo-card">
-                    <img src="Coke Logo.jpg" alt="Coca-Cola Logo" loading="lazy">
-                </div>
-            </div>
-        </section>
+    <section class="section lazy-load">
+      <h2>Leading Brands Demo Tracks</h2>
+      <div class="logos">
+        <div class="logo-card">
+          <img src="Nike Logo.jpg" alt="Nike Logo" loading="lazy">
+        </div>
+        <div class="logo-card">
+          <img src="Mc Donald Logo.jpg" alt="McDonald's Logo" loading="lazy">
+        </div>
+        <div class="logo-card">
+          <img src="Coke Logo.jpg" alt="Coca-Cola Logo" loading="lazy">
+        </div>
+      </div>
+    </section>
 
-        <section class="section lazy-load">
-            <h2>Audio Demos</h2>
-            <div class="audio-demos">
-                <div class="audio-card">
-                    <h3>Nike Commercials</h3>
-                    <audio class="audio-player" controls preload="none">
-                        <source src="Nike Commercial Demo.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                    <audio class="audio-player" controls preload="none">
-                        <source src="Nike Commercial Demo 2.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
+    <section class="section lazy-load">
+      <h2>Audio Demos</h2>
+      <div class="audio-demos">
+        <div class="audio-card">
+          <h3>Nike Commercials</h3>
+          <audio class="audio-player" controls preload="none">
+            <source src="Nike Commercial Demo.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <audio class="audio-player" controls preload="none">
+            <source src="Nike Commercial Demo 2.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
 
-                <div class="audio-card">
-                    <h3>McDonald's Promotions</h3>
-                    <audio class="audio-player" controls preload="none">
-                        <source src="MC DONALD_S Promotional song Demo.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                    <audio class="audio-player" controls preload="none">
-                        <source src="MC DONALD_S Promotional song Demo 2.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
+        <div class="audio-card">
+          <h3>McDonald's Promotions</h3>
+          <audio class="audio-player" controls preload="none">
+            <source src="MC DONALD_S Promotional song Demo.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <audio class="audio-player" controls preload="none">
+            <source src="MC DONALD_S Promotional song Demo 2.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
 
-                <div class="audio-card">
-                    <h3>Coca-Cola Promotions</h3>
-                    <audio class="audio-player" controls preload="none">
-                        <source src="Coke Promotional Song.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                    <audio class="audio-player" controls preload="none">
-                        <source src="Coke Promotional Song 2.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-        </section>
-    </div>
+        <div class="audio-card">
+          <h3>Coca-Cola Promotions</h3>
+          <audio class="audio-player" controls preload="none">
+            <source src="Coke Promotional Song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <audio class="audio-player" controls preload="none">
+            <source src="Coke Promotional Song 2.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div>
+    </section>
+  </div>
 
-    <footer class="footer" id="contact">
-        <p>&copy; 2025 Soundriff. All Rights Reserved.</p>
-    </footer>
+  <footer class="footer" id="contact">
+    <p>&copy; 2025 Soundriff. All Rights Reserved.</p>
+  </footer>
 
-    <script>
-        // Performance optimization - Intersection Observer for lazy loading
-        document.addEventListener('DOMContentLoaded', function() {
-            // Lazy load elements
-            const lazyElements = document.querySelectorAll('.lazy-load');
-            
-            if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, {
-                    root: null,
-                    rootMargin: '0px',
-                    threshold: 0.1
-                });
-                
-                lazyElements.forEach(element => {
-                    observer.observe(element);
-                });
-            } else {
-                // Fallback for browsers without IntersectionObserver
-                lazyElements.forEach(element => {
-                    element.classList.add('visible');
-                });
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Lazy load elements
+      const lazyElements = document.querySelectorAll('.lazy-load');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
             }
-            
-            // Create floating particles (inspired by Tanyatimal.studio)
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 20;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const size = Math.random() * 8 + 2;
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.opacity = Math.random() * 0.5 + 0.1;
-                
-                // Create unique animation
-                const duration = Math.random() * 40 + 20;
-                const delay = Math.random() * 10;
-                particle.style.animation = `particle-float ${duration}s ${delay}s infinite ease-in-out`;
-                
-                particlesContainer.appendChild(particle);
-            }
-            
-            // Add floating animation dynamically
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes particle-float {
-                    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-                    25% { transform: translate(50px, -20px) rotate(90deg); }
-                    50% { transform: translate(0, -40px) rotate(180deg); }
-                    75% { transform: translate(-50px, -20px) rotate(270deg); }
-                }
-            `;
-            document.head.appendChild(style);
+          });
+        }, {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
         });
-    </script>
+        lazyElements.forEach(element => {
+          observer.observe(element);
+        });
+      } else {
+        lazyElements.forEach(element => {
+          element.classList.add('visible');
+        });
+      }
+      
+      // Create floating particles
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 20;
+      for (let i = 0; i < particleCount; i++) {
+        const size = Math.random() * 8 + 2;
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        const duration = Math.random() * 40 + 20;
+        const delay = Math.random() * 10;
+        particle.style.animation = `particle-float ${duration}s ${delay}s infinite ease-in-out`;
+        particlesContainer.appendChild(particle);
+      }
+      
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes particle-float {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          25% { transform: translate(50px, -20px) rotate(90deg); }
+          50% { transform: translate(0, -40px) rotate(180deg); }
+          75% { transform: translate(-50px, -20px) rotate(270deg); }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      // Initialize Sonic Animation
+      function initSonicAnimation() {
+        const canvas = document.getElementById('sonicCanvas');
+        const ctx = canvas.getContext('2d');
+        // Adjust canvas size to match its container
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        let time = 0;
+        function draw() {
+          time += 0.02;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const numberOfCurves = 3;
+          for (let i = 0; i < numberOfCurves; i++) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 0, 255, ${0.5 + 0.5 * Math.sin(time + i)})`;
+            ctx.lineWidth = 2;
+            const amplitude = canvas.height / 4;
+            const frequency = 0.02;
+            for (let x = 0; x < canvas.width; x++) {
+              const y = canvas.height / 2 + amplitude * Math.sin((x * frequency) + time + i * Math.PI / 2);
+              if (x === 0) {
+                ctx.moveTo(x, y);
+              } else {
+                ctx.lineTo(x, y);
+              }
+            }
+            ctx.stroke();
+          }
+          requestAnimationFrame(draw);
+        }
+        draw();
+      }
+      
+      initSonicAnimation();
+    });
+  </script>
 </body>
 </html>
