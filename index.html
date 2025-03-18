@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>  
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -264,35 +264,17 @@
       margin-top: var(--spacing-lg);
     }
 
-    .stat-card {
-      text-align: center;
-      padding: var(--spacing-sm);
-      background: rgba(0, 0, 153, 0.2);
-      border-radius: var(--border-radius-medium);
-      transition: var(--transition-smooth);
-    }
-
-    .stat-card:hover {
-      background: rgba(0, 0, 153, 0.4);
-      transform: translateY(-5px);
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: var(--spacing-xs);
-      background: linear-gradient(90deg, #fff, var(--color-bright-blue));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--color-text-secondary);
-    }
+    <!-- Removed "50+ Global Brands" card -->
+    <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Client Retention</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">5K+</div>
+            <div class="stat-label">Productions</div>
+          </div>
+    </div>
 
     /* Regular Sections */
     .section {
@@ -614,10 +596,6 @@
         </blockquote>
         <a href="#contact" class="cta-button">Get in Touch</a>
         <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-number">50+</div>
-            <div class="stat-label">Global Brands</div>
-          </div>
           <div class="stat-card">
             <div class="stat-number">98%</div>
             <div class="stat-label">Client Retention</div>
