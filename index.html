@@ -55,7 +55,7 @@
       will-change: transform;
     }
 
-    /* Animated Background */
+    /* Animated Background - optimized with will-change */
     .bg-animation {
       position: fixed;
       top: 0;
@@ -93,28 +93,6 @@
       50% { transform: scale(1.2); }
     }
 
-    /* Fade In Up Animation for Lazy-loaded Sections */
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .lazy-load {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .lazy-load.visible {
-      opacity: 1;
-      transform: translateY(0);
-      animation: fadeInUp 1s ease-out;
-    }
-
     /* Typography */
     h1, h2, h3 {
       margin: 0;
@@ -127,11 +105,13 @@
       font-weight: 600;
       letter-spacing: -0.02em;
     }
+
     p {
       margin-bottom: var(--spacing-md);
       font-size: 1.125rem;
       letter-spacing: 0.01em;
     }
+
     .lead-text {
       font-size: 1.35rem;
       line-height: 1.5;
@@ -140,6 +120,7 @@
       max-width: 80ch;
       color: var(--color-white);
     }
+
     .text-accent {
       color: var(--color-bright-blue);
       font-weight: 500;
@@ -156,6 +137,7 @@
       box-shadow: var(--shadow-standard);
       contain: layout;
     }
+
     .header-glow {
       position: absolute;
       top: -50%;
@@ -167,10 +149,12 @@
       will-change: transform;
       pointer-events: none;
     }
+
     @keyframes rotate {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+
     .header h1 {
       font-size: clamp(3rem, 8vw, 5rem);
       margin-bottom: var(--spacing-sm);
@@ -179,10 +163,12 @@
       letter-spacing: 4px;
       animation: glow 3s ease-in-out infinite;
     }
+
     @keyframes glow {
       0%, 100% { text-shadow: 0 0 20px rgba(0, 0, 255, 0.5); }
       50% { text-shadow: 0 0 40px rgba(0, 0, 255, 0.8); }
     }
+
     .header p {
       font-size: clamp(1.2rem, 3vw, 1.5rem);
       opacity: 0.9;
@@ -216,15 +202,18 @@
       gap: var(--spacing-lg);
       align-items: center;
     }
+
     .about-section:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-hover);
     }
+
     .about-content {
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
+
     .about-media {
       position: relative;
       height: 100%;
@@ -233,6 +222,7 @@
       overflow: hidden;
       box-shadow: var(--shadow-standard);
     }
+
     /* The sonic animation canvas fills the whole media container */
     #sonicCanvas {
       position: absolute;
@@ -242,12 +232,14 @@
       height: 100%;
       display: block;
     }
+
     .about-section h2 {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
       margin-bottom: var(--spacing-md);
       position: relative;
       display: inline-block;
     }
+
     .about-section h2::after {
       content: '';
       position: absolute;
@@ -260,16 +252,18 @@
       transform-origin: left;
       transition: transform 0.5s ease;
     }
+
     .about-section:hover h2::after {
       transform: scaleX(1);
     }
+
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: var(--spacing-lg);
       margin-top: var(--spacing-lg);
     }
-    /* Removed the "50+ Global Brands" card for smoother performance */
+
     .stat-card {
       text-align: center;
       padding: var(--spacing-sm);
@@ -277,10 +271,12 @@
       border-radius: var(--border-radius-medium);
       transition: var(--transition-smooth);
     }
+
     .stat-card:hover {
       background: rgba(0, 0, 153, 0.4);
       transform: translateY(-5px);
     }
+
     .stat-number {
       font-size: 2.5rem;
       font-weight: 700;
@@ -290,6 +286,7 @@
       background-clip: text;
       color: transparent;
     }
+
     .stat-label {
       font-size: 0.9rem;
       text-transform: uppercase;
@@ -309,16 +306,19 @@
       border: 1px solid rgba(0, 0, 255, 0.1);
       transition: var(--transition-smooth);
     }
+
     .section:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-hover);
     }
+
     .section h2 {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
       margin-bottom: var(--spacing-md);
       position: relative;
       display: inline-block;
     }
+
     .section h2::after {
       content: '';
       position: absolute;
@@ -331,6 +331,7 @@
       transform-origin: right;
       transition: transform 0.3s ease;
     }
+
     .section:hover h2::after {
       transform: scaleX(1);
       transform-origin: left;
@@ -343,6 +344,7 @@
       gap: var(--spacing-md);
       margin: var(--spacing-md) 0;
     }
+
     .logo-card {
       background: var(--card-bg);
       padding: var(--spacing-md);
@@ -353,6 +355,7 @@
       overflow: hidden;
       contain: content;
     }
+
     .logo-card::before {
       content: '';
       position: absolute;
@@ -366,13 +369,16 @@
       will-change: transform;
       pointer-events: none;
     }
+
     .logo-card:hover::before {
       transform: translateX(100%);
     }
+
     .logo-card:hover {
       transform: translateY(-10px) scale(1.02);
       box-shadow: var(--shadow-hover);
     }
+
     .logo-card img {
       max-width: 150px;
       height: auto;
@@ -388,6 +394,7 @@
       display: grid;
       gap: var(--spacing-md);
     }
+
     .audio-card {
       background: rgba(0, 0, 153, 0.4);
       padding: var(--spacing-md);
@@ -396,16 +403,19 @@
       transition: var(--transition-smooth);
       contain: content;
     }
+
     .audio-card:hover {
       background: rgba(0, 0, 153, 0.6);
       transform: scale(1.01);
     }
+
     .audio-card h3 {
       font-size: 1.8rem;
       margin-bottom: var(--spacing-md);
       position: relative;
       display: inline-block;
     }
+
     .audio-player {
       width: 100%;
       margin: var(--spacing-sm) 0;
@@ -428,6 +438,7 @@
       font-size: 1.2rem;
       line-height: 1.6;
     }
+
     blockquote::before {
       content: '"';
       position: absolute;
@@ -449,6 +460,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .footer::before {
       content: '';
       position: absolute;
@@ -458,6 +470,108 @@
       height: 1px;
       background: linear-gradient(90deg, transparent 0%, var(--color-bright-blue) 50%, transparent 100%);
       pointer-events: none;
+    }
+
+    /* Lazy Load Images & Content */
+    .lazy-load {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .lazy-load.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Button Styles */
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--color-royal-blue), var(--color-bright-blue));
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 255, 0.3);
+      transition: var(--transition-smooth);
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      margin-top: var(--spacing-sm);
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-bright-blue), var(--color-royal-blue));
+      z-index: -1;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 255, 0.4);
+    }
+
+    .cta-button:hover::before {
+      opacity: 1;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .about-section {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+      
+      .about-media {
+        min-height: 300px;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --spacing-lg: 3rem;
+        --spacing-xl: 4rem;
+      }
+      
+      .section, .about-section {
+        padding: var(--spacing-md);
+      }
+
+      .logos {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--spacing-sm);
+      }
+
+      .audio-card {
+        padding: var(--spacing-md);
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Performance Optimization */
+    @media (prefers-reduced-motion: reduce) {
+      .bg-animation, .header-glow, .section, .logo-card::before, .header h1,
+      .about-section, .waveform-bar, .particle {
+        animation: none;
+        transition: none;
+      }
     }
 
     /* Smooth Scrolling */
@@ -487,20 +601,23 @@
       <div class="about-content">
         <h2>Redefining Sonic Branding</h2>
         <p class="lead-text">
-          At Soundriff, we craft <span class="text-accent">high-impact sonic experiences</span> that elevate brands through innovative sound design.
+          At Soundriff, we craft <span class="text-accent">high-impact sonic experiences</span> that elevate brands through the power of innovative sound design.
         </p>
         <p>
-          Our unique approach combines cutting-edge AI technology with human artistry to produce premium audio signatures that resonate deeply while keeping production lean.
+          Our unique approach combines cutting-edge AI technology with human artistry to produce premium audio signatures that resonate with audiences on a deeper level, while maintaining cost efficiency.
         </p>
         <p>
-          From global campaigns to intimate brand moments, we create custom soundtracks that capture your brand’s essence and transform it into an unforgettable auditory experience.
+          From global campaigns to intimate brand moments, we create custom soundtracks that capture the essence of your brand identity and transform it into an unforgettable auditory experience.
         </p>
         <blockquote>
           Sound is the invisible architecture of emotion. We build sonic landscapes that make your brand not just heard, but remembered.
         </blockquote>
         <a href="#contact" class="cta-button">Get in Touch</a>
         <div class="stats-grid">
-          <!-- "50+ Global Brands" removed for improved performance -->
+          <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Global Brands</div>
+          </div>
           <div class="stat-card">
             <div class="stat-number">98%</div>
             <div class="stat-label">Client Retention</div>
@@ -580,7 +697,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Lazy load elements with cool fadeInUp effect
+      // Lazy load elements
       const lazyElements = document.querySelectorAll('.lazy-load');
       if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
@@ -604,9 +721,9 @@
         });
       }
       
-      // Create floating particles (reduced count for better performance)
+      // Create floating particles
       const particlesContainer = document.getElementById('particles');
-      const particleCount = 10;
+      const particleCount = 20;
       for (let i = 0; i < particleCount; i++) {
         const size = Math.random() * 8 + 2;
         const particle = document.createElement('div');
@@ -633,29 +750,24 @@
       `;
       document.head.appendChild(style);
       
-      // Initialize Sonic Animation with mobile adjustments
+      // Initialize Sonic Animation
       function initSonicAnimation() {
         const canvas = document.getElementById('sonicCanvas');
         const ctx = canvas.getContext('2d');
+        // Adjust canvas size to match its container
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
-        
-        // Adjust parameters for mobile screens
-        const isMobile = window.innerWidth < 768;
-        const numberOfCurves = isMobile ? 2 : 3;
-        const amplitudeFactor = isMobile ? 0.2 : 0.25;
-        const frequency = isMobile ? 0.015 : 0.02;
-        const lineWidth = isMobile ? 1 : 2;
-        
         let time = 0;
         function draw() {
           time += 0.02;
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          const amplitude = canvas.height * amplitudeFactor;
+          const numberOfCurves = 3;
           for (let i = 0; i < numberOfCurves; i++) {
             ctx.beginPath();
             ctx.strokeStyle = `rgba(0, 0, 255, ${0.5 + 0.5 * Math.sin(time + i)})`;
-            ctx.lineWidth = lineWidth;
+            ctx.lineWidth = 2;
+            const amplitude = canvas.height / 4;
+            const frequency = 0.02;
             for (let x = 0; x < canvas.width; x++) {
               const y = canvas.height / 2 + amplitude * Math.sin((x * frequency) + time + i * Math.PI / 2);
               if (x === 0) {
