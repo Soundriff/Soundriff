@@ -55,7 +55,7 @@
       will-change: transform;
     }
 
-    /* Animated Background - optimized with will-change */
+    /* Animated Background */
     .bg-animation {
       position: fixed;
       top: 0;
@@ -104,7 +104,6 @@
         transform: translateY(0);
       }
     }
-
     .lazy-load {
       opacity: 0;
       transform: translateY(20px);
@@ -128,13 +127,11 @@
       font-weight: 600;
       letter-spacing: -0.02em;
     }
-
     p {
       margin-bottom: var(--spacing-md);
       font-size: 1.125rem;
       letter-spacing: 0.01em;
     }
-
     .lead-text {
       font-size: 1.35rem;
       line-height: 1.5;
@@ -143,7 +140,6 @@
       max-width: 80ch;
       color: var(--color-white);
     }
-
     .text-accent {
       color: var(--color-bright-blue);
       font-weight: 500;
@@ -160,7 +156,6 @@
       box-shadow: var(--shadow-standard);
       contain: layout;
     }
-
     .header-glow {
       position: absolute;
       top: -50%;
@@ -172,12 +167,10 @@
       will-change: transform;
       pointer-events: none;
     }
-
     @keyframes rotate {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-
     .header h1 {
       font-size: clamp(3rem, 8vw, 5rem);
       margin-bottom: var(--spacing-sm);
@@ -186,12 +179,10 @@
       letter-spacing: 4px;
       animation: glow 3s ease-in-out infinite;
     }
-
     @keyframes glow {
       0%, 100% { text-shadow: 0 0 20px rgba(0, 0, 255, 0.5); }
       50% { text-shadow: 0 0 40px rgba(0, 0, 255, 0.8); }
     }
-
     .header p {
       font-size: clamp(1.2rem, 3vw, 1.5rem);
       opacity: 0.9;
@@ -225,18 +216,15 @@
       gap: var(--spacing-lg);
       align-items: center;
     }
-
     .about-section:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-hover);
     }
-
     .about-content {
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
-
     .about-media {
       position: relative;
       height: 100%;
@@ -245,7 +233,6 @@
       overflow: hidden;
       box-shadow: var(--shadow-standard);
     }
-
     /* The sonic animation canvas fills the whole media container */
     #sonicCanvas {
       position: absolute;
@@ -255,14 +242,12 @@
       height: 100%;
       display: block;
     }
-
     .about-section h2 {
       font-size: clamp(1.8rem, 4vw, 2.5rem);
       margin-bottom: var(--spacing-md);
       position: relative;
       display: inline-block;
     }
-
     .about-section h2::after {
       content: '';
       position: absolute;
@@ -275,19 +260,16 @@
       transform-origin: left;
       transition: transform 0.5s ease;
     }
-
     .about-section:hover h2::after {
       transform: scaleX(1);
     }
-
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: var(--spacing-lg);
       margin-top: var(--spacing-lg);
     }
-
-    /* Removed the "50+ Global Brands" stat card for performance */
+    /* Removed the "50+ Global Brands" card for smoother performance */
     .stat-card {
       text-align: center;
       padding: var(--spacing-sm);
@@ -505,10 +487,10 @@
       <div class="about-content">
         <h2>Redefining Sonic Branding</h2>
         <p class="lead-text">
-          At Soundriff, we craft <span class="text-accent">high-impact sonic experiences</span> that elevate brands through the power of innovative sound design.
+          At Soundriff, we craft <span class="text-accent">high-impact sonic experiences</span> that elevate brands through innovative sound design.
         </p>
         <p>
-          Our unique approach combines cutting-edge AI technology with human artistry to produce premium audio signatures that resonate on a deeper level while keeping production lean.
+          Our unique approach combines cutting-edge AI technology with human artistry to produce premium audio signatures that resonate deeply while keeping production lean.
         </p>
         <p>
           From global campaigns to intimate brand moments, we create custom soundtracks that capture your brand’s essence and transform it into an unforgettable auditory experience.
@@ -518,7 +500,7 @@
         </blockquote>
         <a href="#contact" class="cta-button">Get in Touch</a>
         <div class="stats-grid">
-          <!-- Removed "50+ Global Brands" card for smoother performance -->
+          <!-- "50+ Global Brands" removed for improved performance -->
           <div class="stat-card">
             <div class="stat-number">98%</div>
             <div class="stat-label">Client Retention</div>
@@ -624,7 +606,7 @@
       
       // Create floating particles (reduced count for better performance)
       const particlesContainer = document.getElementById('particles');
-      const particleCount = 10;  // Reduced from 20 to 10
+      const particleCount = 10;
       for (let i = 0; i < particleCount; i++) {
         const size = Math.random() * 8 + 2;
         const particle = document.createElement('div');
@@ -651,23 +633,29 @@
       `;
       document.head.appendChild(style);
       
-      // Initialize Sonic Animation
+      // Initialize Sonic Animation with mobile adjustments
       function initSonicAnimation() {
         const canvas = document.getElementById('sonicCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
+        
+        // Adjust parameters for mobile screens
+        const isMobile = window.innerWidth < 768;
+        const numberOfCurves = isMobile ? 2 : 3;
+        const amplitudeFactor = isMobile ? 0.2 : 0.25;
+        const frequency = isMobile ? 0.015 : 0.02;
+        const lineWidth = isMobile ? 1 : 2;
+        
         let time = 0;
         function draw() {
           time += 0.02;
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-          const numberOfCurves = 3;
+          const amplitude = canvas.height * amplitudeFactor;
           for (let i = 0; i < numberOfCurves; i++) {
             ctx.beginPath();
             ctx.strokeStyle = `rgba(0, 0, 255, ${0.5 + 0.5 * Math.sin(time + i)})`;
-            ctx.lineWidth = 2;
-            const amplitude = canvas.height / 4;
-            const frequency = 0.02;
+            ctx.lineWidth = lineWidth;
             for (let x = 0; x < canvas.width; x++) {
               const y = canvas.height / 2 + amplitude * Math.sin((x * frequency) + time + i * Math.PI / 2);
               if (x === 0) {
